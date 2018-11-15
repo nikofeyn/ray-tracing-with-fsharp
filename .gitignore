@@ -1,0 +1,7 @@
+# Ignore Visual Studio files
+source/RayTracingWithFSharp/RayTracingWithFSharp/bin/
+source/RayTracingWithFSharp/RayTracingWithFSharp/obj/
+source/RayTracingWithFSharp/.vs/
+
+# Ignore PPM image files
+*.ppm
