@@ -22,14 +22,14 @@ let nx = 200
 let ny = 100
 let ns = 100
 
-let rand = Random(101)
+let rand = Random()
 
-let ppm = PPM(ny, nx, Path.Combine(imagesDirectory, "main-chapter7.ppm"))
+let ppm = PPM(ny, nx, Path.Combine(imagesDirectory, "chapter7-part1.ppm"))
 
 let rec color (ray : Ray) (world : Hitable) =
     match world.Hit(ray, 0.0, Double.MaxValue) with
     | Some record ->
-        let target = record.P + record.Normal + randomInUnitSphere(rand)
+        let target = record.P + record.Normal + randomInUnitSphere2(rand)
         0.5 .* (color {A = record.P; B = target - record.P} world)
     | None ->
         let unitDirection = normalize ray.Direction
@@ -40,8 +40,6 @@ let world = HitableList [Sphere(vector(0.0,0.0,-1.0), 0.5);
                          Sphere(vector(0.0,-100.5,-1.0), 100.0)]
 
 let camera = Camera()
-
-
 
 for j = ny-1 downto 0 do
     for i = 0 to nx-1 do

@@ -11,13 +11,15 @@
     <Compile Include="Hitable.fs" />
     <Compile Include="Camera.fs" />
     <Compile Include="DiffuseMaterial.fs" />
+    <Compile Include="Material.fs" />
     <Compile Include="MainChapter2.fsx" />
     <Compile Include="MainChapter3.fsx" />
     <None Include="MainChapter4.fsx" />
     <None Include="MainChapter5Part1.fsx" />
     <None Include="MainChapter5Part2.fsx" />
     <None Include="MainChapter6.fsx" />
-    <None Include="MainChapter7.fsx" />
+    <None Include="MainChapter7Part1.fsx" />
+    <None Include="MainChapter7Part2.fsx" />
   </ItemGroup>
 
 </Project>

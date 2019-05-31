@@ -1,32 +1,21 @@
 ﻿module RayTracingWithFSharp.DiffuseMaterial
 
-open Vector
 open System
+open Vector
 
-(*
-let random () =
-    let r = Random()
-    r.NextDouble()
-
-let randomVector () = vector(random(), random(), random())
-*)
-
-let next (r : Random) = r.NextDouble()
-
-let randomInUnitSphere (r : Random) =
-    let mutable p = 2.0 .* vector(next(r),next(r),next(r)) - vector(1.0,1.0,1.0)
+// This implements a do-while loop as in the book.
+let randomInUnitSphere (random : Random) =
+    let newRandomVector () = 2.0 .* vector(random.NextDouble(),random.NextDouble(),random.NextDouble()) - vector(1.0,1.0,1.0)
+    let mutable p = newRandomVector()
     while normSquared p >= 1.0 do
-        p <- 2.0 .* vector(next(r),next(r),next(r)) - vector(1.0,1.0,1.0)
+        p <- newRandomVector()
     p
 
-let randomInUnitSphere2 () =
-    let r1 = Random()
-    let r2 = Random()
-    let r3 = Random()
-    let getNext (random : Random) = 2.0 * random.NextDouble() - 1.0
-    let one = vector(0.95,0.95,0.95)
-    let rec helper (test : Vector) =
-        if normSquared test >= 1.0
-        then helper (vector(getNext r1, getNext r2, getNext r3))
-        else test
-    helper (vector(getNext r1, getNext r2, getNext r3))
+// This is a more functional approach using tail recursion.
+let randomInUnitSphere2 (random : Random) =
+    let newRandomVector () = 2.0 .* vector(random.NextDouble(),random.NextDouble(),random.NextDouble()) - vector(1.0,1.0,1.0)
+    let rec helper (p : Vector) =
+        if normSquared p >= 1.0
+        then helper (newRandomVector())
+        else p
+    helper (newRandomVector())
